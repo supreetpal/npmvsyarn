@@ -8,15 +8,14 @@ let prettyMs = require('pretty-ms'),
 
 let packageName = process.argv[2];
 
-console.log('🛀 Checking if yarn is installed...');
+console.log('🕵 Checking if ' + clc.blue('yarn') + ' is installed...');
 let cmdExist = sh.exec('hash yarn', {silent:true}).output;
-
-if (cmdExist !== '') {
-    console.log('🤕 yarn command not found in a global scope.');
-    console.log('😴 Installing yarn...');
+if (cmdExist !== undefined) {
+    console.log('🤕 ' + clc.blue('yarn') + 'command not found in a global scope.');
+    console.log('😴 ' + clc.blue('yarn') + 'Installing yarn...');
     sh.exec('npm install -g yarn', {silent:true});
 } else {
-    console.log('👯 yarn exists in a global scope');
+    console.log('👯 ' + clc.blue('yarn') + 'exists in a global scope');
 }
 
 console.log('🛀 Adding ' + clc.green(packageName) + ' with ' + clc.blue('yarn'));
