@@ -12,10 +12,10 @@ console.log('🕵 Checking if ' + clc.blue('yarn') + ' is installed...');
 let cmdExist = sh.exec('hash yarn', {silent:true}).output;
 if (cmdExist !== undefined) {
     console.log('🤕 ' + clc.blue('yarn') + 'command not found in a global scope.');
-    console.log('😴 ' + clc.blue('yarn') + 'Installing yarn...');
+    console.log('😴 Installing ' + clc.blue('yarn') + '...');
     sh.exec('npm install -g yarn', {silent:true});
 } else {
-    console.log('👯 ' + clc.blue('yarn') + 'exists in a global scope');
+    console.log('👯 ' + clc.blue('yarn') + ' exists in a global scope');
 }
 
 console.log('🛀 Adding ' + clc.green(packageName) + ' with ' + clc.blue('yarn'));
