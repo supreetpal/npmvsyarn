@@ -25,6 +25,7 @@
   "homepage": "https://github.com/supreetpal/npm-yarn-compare#readme",
   "dependencies": {
     "cli-color": "^1.1.0",
-    "pretty-ms": "^2.1.0"
+    "pretty-ms": "^2.1.0",
+    "shelljs": "^0.7.4"
   }
 }
