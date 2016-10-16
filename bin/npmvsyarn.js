@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-process.title = 'npm-yarn-compare';
+process.title = 'npmvsyarn';
 
 let prettyMs = require('pretty-ms'),
     clc = require('cli-color'),

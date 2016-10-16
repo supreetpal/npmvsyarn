@@ -1,14 +1,14 @@
 {
-  "name": "npm-yarn-compare",
+  "name": "npmvsyarn",
   "version": "1.0.0",
   "description": "A small utility to compare installations with npm and yarn.",
-  "bin": "bin/npm-yarn-compare.js",
+  "bin": "bin/npmvsyarn.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/supreetpal/npm-yarn-compare.git"
+    "url": "git+https://github.com/supreetpal/npmvsyarn.git"
   },
   "keywords": [
     "npm",
@@ -20,9 +20,9 @@
   "author": "supreetpal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/supreetpal/npm-yarn-compare/issues"
+    "url": "https://github.com/supreetpal/npmvsyarn/issues"
   },
-  "homepage": "https://github.com/supreetpal/npm-yarn-compare#readme",
+  "homepage": "https://github.com/supreetpal/npmvsyarn#readme",
   "dependencies": {
     "cli-color": "^1.1.0",
     "pretty-ms": "^2.1.0",
