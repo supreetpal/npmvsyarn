@@ -9,6 +9,12 @@ let prettyMs = require('pretty-ms'),
 
 let packageName = process.argv[2];
 
+// Move existing node_modules (if any) to temp
+console.log('🛀 Saving existing node_modules (if any) to temp');
+if (sh.test('-d', 'node_modules')) {
+    sh.mv('node_modules', 'temp_npmvsyarn_node_modules');
+}
+
 // Check if yarn exists, if not install it.
 console.log('🕵 Checking if ' + clc.blue('yarn') + ' is installed...');
 
@@ -33,6 +39,9 @@ timeStamp = Date.now();
 sh.exec('yarn remove ' + packageName, { silent: true });
 let yarnRemoveTime = Date.now() - timeStamp;
 console.log('🚀 Time taken by yarn to remove ' + clc.red(prettyMs(yarnRemoveTime)) + '');
+sh.rm('-rf', 'node_modules');
+
+
 
 // Install module using npm install.
 timeStamp = Date.now();
@@ -56,6 +65,13 @@ var table = new Table({
         head: ['yellow']
     }
 });
+
+console.log('🛀 Cleaning up.');
+sh.rm('yarn.lock');
+sh.rm('-rf', 'node_modules');
+if (sh.test('-d', 'temp_npmvsyarn_node_modules')) {
+    sh.mv('temp_npmvsyarn_node_modules', 'node_modules');
+}
 
 table.push(
     ['npm', prettyMs(npmAddTime), prettyMs(npmRemoveTime)], ['yarn', prettyMs(yarnAddTime), prettyMs(yarnRemoveTime)]
