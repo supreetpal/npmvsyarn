@@ -67,7 +67,6 @@ var table = new Table({
 });
 
 console.log('🛀 Cleaning up.');
-sh.rm('yarn.lock');
 sh.rm('-rf', 'node_modules');
 if (sh.test('-d', 'temp_npmvsyarn_node_modules')) {
     sh.mv('temp_npmvsyarn_node_modules', 'node_modules');
