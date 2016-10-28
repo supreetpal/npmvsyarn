@@ -64,7 +64,6 @@ if (!packageName) {
 
 } else {
 
-
     // Install module using yarn add.
     console.log('🛀 Adding ' + clc.magenta(packageName) + ' with ' + clc.blue('yarn'));
     timeStamp = Date.now();
