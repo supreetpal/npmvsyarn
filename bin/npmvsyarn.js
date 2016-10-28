@@ -26,36 +26,69 @@ if (!sh.which('yarn')) {
     console.log('👯 ' + clc.blue('yarn') + ' exists in a global scope');
 }
 
-// Install module using yarn add.
-console.log('🛀 Adding ' + clc.magenta(packageName) + ' with ' + clc.blue('yarn'));
-let timeStamp = Date.now();
-sh.exec('yarn add ' + packageName, { silent: true });
-let yarnAddTime = Date.now() - timeStamp;
-console.log('🚀 Time taken by yarn to add ' + clc.green(prettyMs(yarnAddTime)) + '');
+// Check if package name is provided
+if (!packageName) {
 
-// Uninstall module using yarn remove.
-console.log('🛀 Removing ' + clc.magenta(packageName) + ' with ' + clc.blue('yarn'));
-timeStamp = Date.now();
-sh.exec('yarn remove ' + packageName, { silent: true });
-let yarnRemoveTime = Date.now() - timeStamp;
-console.log('🚀 Time taken by yarn to remove ' + clc.red(prettyMs(yarnRemoveTime)) + '');
-sh.rm('-rf', 'node_modules');
+    console.log('Running benchmark for current project');
+
+    // Check if package.json exists
+    if (!sh.test('-f', 'package.json')) {
+        console.log('package.json does not exist');
+        console.log('Exit.');
+        process.exit(1);
+    }
+
+    // Install module using yarn add.
+    console.log('🛀 Installing with ' + clc.blue('yarn'));
+    let timeStamp = Date.now();
+    sh.exec('yarn ', { silent: true });
+    let yarnAddTime = Date.now() - timeStamp;
+    console.log('🚀 Time taken by yarn to add ' + clc.green(prettyMs(yarnAddTime)) + '');
+
+    // Clear node_modules
+    sh.rm('-rf', 'node_modules');
+
+    // Install module using npm install.
+    timeStamp = Date.now();
+    console.log('🛀 Installing with ' + clc.blue('npm'));
+    sh.exec('npm install ', { silent: true });
+    let npmAddTime = Date.now() - timeStamp;
+    console.log('🚀 Time taken by npm to install ' + clc.green(prettyMs(npmAddTime)) + '');
+
+} else {
+
+
+    // Install module using yarn add.
+    console.log('🛀 Adding ' + clc.magenta(packageName) + ' with ' + clc.blue('yarn'));
+    let timeStamp = Date.now();
+    sh.exec('yarn add ' + packageName, { silent: true });
+    let yarnAddTime = Date.now() - timeStamp;
+    console.log('🚀 Time taken by yarn to add ' + clc.green(prettyMs(yarnAddTime)) + '');
+
+    // Uninstall module using yarn remove.
+    console.log('🛀 Removing ' + clc.magenta(packageName) + ' with ' + clc.blue('yarn'));
+    timeStamp = Date.now();
+    sh.exec('yarn remove ' + packageName, { silent: true });
+    let yarnRemoveTime = Date.now() - timeStamp;
+    console.log('🚀 Time taken by yarn to remove ' + clc.red(prettyMs(yarnRemoveTime)) + '');
+    sh.rm('-rf', 'node_modules');
 
 
 
-// Install module using npm install.
-timeStamp = Date.now();
-console.log('🛀 Installing ' + clc.magenta(packageName) + ' with ' + clc.blue('npm'));
-sh.exec('npm install ' + packageName, { silent: true });
-let npmAddTime = Date.now() - timeStamp;
-console.log('🚀 Time taken by npm to install ' + clc.green(prettyMs(npmAddTime)) + '');
+    // Install module using npm install.
+    timeStamp = Date.now();
+    console.log('🛀 Installing ' + clc.magenta(packageName) + ' with ' + clc.blue('npm'));
+    sh.exec('npm install ' + packageName, { silent: true });
+    let npmAddTime = Date.now() - timeStamp;
+    console.log('🚀 Time taken by npm to install ' + clc.green(prettyMs(npmAddTime)) + '');
 
-// Uninstall module using npm uninstall.
-console.log('🛀 Removing ' + clc.magenta(packageName) + ' with ' + clc.blue('npm'));
-timeStamp = Date.now();
-sh.exec('npm uninstall ' + packageName, { silent: true });
-let npmRemoveTime = Date.now() - timeStamp;
-console.log('🚀 Time taken by npm to uninstall ' + clc.red(prettyMs(npmRemoveTime)) + '');
+    // Uninstall module using npm uninstall.
+    console.log('🛀 Removing ' + clc.magenta(packageName) + ' with ' + clc.blue('npm'));
+    timeStamp = Date.now();
+    sh.exec('npm uninstall ' + packageName, { silent: true });
+    let npmRemoveTime = Date.now() - timeStamp;
+    console.log('🚀 Time taken by npm to uninstall ' + clc.red(prettyMs(npmRemoveTime)) + '');
+}
 
 // Display results in a table.
 var table = new Table({
