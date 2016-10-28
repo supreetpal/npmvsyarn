@@ -10,7 +10,7 @@ let prettyMs = require('pretty-ms'),
 let packageName = process.argv[2];
 
 // Move existing node_modules (if any) to temp
-console.log('🛀 Saving existing node_modules (if any) to temp');
+console.log('🛀 Saving node_modules (if any) to temp');
 if (sh.test('-d', 'node_modules')) {
     sh.mv('node_modules', 'temp_npmvsyarn_node_modules');
 }
