@@ -33,8 +33,8 @@ if (!packageName) {
 
     // Check if package.json exists
     if (!sh.test('-f', 'package.json')) {
-        console.log('package.json does not exist');
-        console.log('Exit.');
+        console.log('🤕 package.json does not exist');
+        console.log('🚫 Exit');
         process.exit(1);
     }
 
