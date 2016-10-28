@@ -36,7 +36,7 @@ let timeStamp,
 // Check if package name is provided
 if (!packageName) {
 
-    console.log('Running benchmark for current project');
+    console.log('🛀 Running benchmark for current project');
 
     // Check if package.json exists
     if (!sh.test('-f', 'package.json')) {
