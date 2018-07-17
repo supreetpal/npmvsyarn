@@ -6,7 +6,7 @@ process.title = 'npmvsyarn';
 let prettyMs = require('pretty-ms'),
     clc = require('cli-color'),
     sh = require('shelljs'),
-    Table = require('cli-table2');
+    Table = require('cli-table3');
 
 let packageName = process.argv[2];
 
